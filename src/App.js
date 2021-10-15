@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { 
+  ThemeProvider,
+  Grid
+ } from '@mui/material';
+import theme from './assets/css/theme';
+import './assets/css/styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navbar from './components/Navbar';
+import Leftbar from './components/Leftbar';
+import Feed from './components/Feed';
+import Rightbar from './components/Rightbar';
+import Add from './components/Add';
+
+const sxGrid= {
+  display: {
+    xs: 'none',
+    sm: 'flex'
+  }
 }
 
-export default App;
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <Grid container>
+        <Grid item sm={2} xs={2}>
+          <Leftbar/>
+        </Grid>
+        <Grid item sm={7} xs={10}>
+          <Feed/>
+        </Grid>
+        <Grid item sm={3} sx={sxGrid}>
+          <Rightbar/>
+        </Grid>
+      </Grid>
+      <Add/>
+    </ThemeProvider>
+  )
+}
+
+export default App
